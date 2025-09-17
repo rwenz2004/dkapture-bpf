@@ -2,7 +2,7 @@ PROJ_ROOT ?= ..
 MODULE := $(notdir $(CURDIR))
 BUILD_DIR := $(PROJ_ROOT)/build/$(MODULE)
 BPF_SRC = $(shell ls *.bpf.c)
-TARGETs = $(BPF_SRC:%.bpf.c=$(BUILD_DIR)/%.skel.h)
+TARGETs = $(BPF_SRC:%.bpf.c=$(BUILD_DIR)/%.bpf.o)
 BPF_TARGET_ARCH := $(shell uname -m)
 ifeq ($(BPF_TARGET_ARCH), loongarch64)
 	BPF_TARGET_ARCH := loongarch
@@ -31,10 +31,6 @@ all: $(TARGETs)
 # Ensure object directory exists
 $(BUILD_DIR):
 	@mkdir -p $@
-
-$(BUILD_DIR)/%.skel.h: $(BUILD_DIR)/%.bpf.o | $(BUILD_DIR)
-	bpftool gen skeleton $< > $@
-	python3 $(PROJ_ROOT)/scripts/patch_skel.py --obj-dir $(BUILD_DIR) $@
 
 $(BUILD_DIR)/%.bpf.o: %.bpf.c $(PROJ_ROOT)/build/include/vmlinux.h $(PROJ_ROOT)/build/include/kconfig.h | $(BUILD_DIR)
 	clang -D__$(BPF_TARGET_ARCH)__ $(CLANG_FLAGS) -target bpf -c $< -o $@
