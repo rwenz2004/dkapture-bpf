@@ -1,0 +1,58 @@
+PROJ_ROOT ?= ..
+MODULE := $(notdir $(CURDIR))
+BUILD_DIR := $(PROJ_ROOT)/build/$(MODULE)
+BPF_SRC = $(shell ls *.bpf.c)
+TARGETs = $(BPF_SRC:%.bpf.c=$(BUILD_DIR)/%.skel.h)
+BPF_TARGET_ARCH := $(shell uname -m)
+ifeq ($(BPF_TARGET_ARCH), loongarch64)
+	BPF_TARGET_ARCH := loongarch
+endif
+ifeq ($(BPF_TARGET_ARCH), loongarch)
+	filter-out-multi = $(strip \
+		$(foreach word,$(1), \
+			$(if $(strip $(foreach substr,$(2),$(findstring $(substr),$(word)))),, \
+				$(word) \
+			) \
+		) \
+	)
+	BLACKLIST := rm-forbid signal-filter
+	TARGETs := $(call filter-out-multi, $(TARGETs), $(BLACKLIST))
+endif
+CLANG_FLAGS = -g -MMD -Wall -O2 -I$(PROJ_ROOT)/include \
+			-I$(PROJ_ROOT)/build/include
+
+.PHONY: all clean
+# 注明不要删除的中间文件
+.SECONDARY:
+.SUFFIXES:
+
+all: $(TARGETs)
+
+# Ensure object directory exists
+$(BUILD_DIR):
+	@mkdir -p $@
+
+$(BUILD_DIR)/%.skel.h: $(BUILD_DIR)/%.bpf.o | $(BUILD_DIR)
+	bpftool gen skeleton $< > $@
+	python3 $(PROJ_ROOT)/scripts/patch_skel.py --obj-dir $(BUILD_DIR) $@
+
+$(BUILD_DIR)/%.bpf.o: %.bpf.c $(PROJ_ROOT)/build/include/vmlinux.h $(PROJ_ROOT)/build/include/kconfig.h | $(BUILD_DIR)
+	clang -D__$(BPF_TARGET_ARCH)__ $(CLANG_FLAGS) -target bpf -c $< -o $@
+
+$(PROJ_ROOT)/build/include/vmlinux.h:
+	make -C $(PROJ_ROOT)/include/ $@
+
+$(PROJ_ROOT)/build/include/kconfig.h:
+	make -C $(PROJ_ROOT)/include/ $@
+
+built-in.a:
+	clang -r $(BUILD_DIR)/*.bpf.o -o $@
+
+clean:
+	rm -f $(BUILD_DIR)/*.o $(BUILD_DIR)/*.d $(TARGETs)
+
+distclean:
+	rm -rf $(BUILD_DIR)
+
+-include $(wildcard $(BUILD_DIR)/*.d)
+	
