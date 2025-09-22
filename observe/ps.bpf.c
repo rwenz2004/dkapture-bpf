@@ -3,7 +3,7 @@
 #include <bpf/bpf_helpers.h>
 #include <bpf/bpf_tracing.h>
 #include "ps.h"
-#include "Kcom.h"
+#include "com.h"
 
 #define __AC(X, Y) (X##Y)
 #define _AC(X, Y) __AC(X, Y)

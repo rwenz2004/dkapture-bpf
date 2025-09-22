@@ -5,8 +5,8 @@
 #include <bpf/bpf_core_read.h>
 #include <bpf/bpf_tracing.h>
 
-#include "Kcom.h"
-#include "Kstr-utils.h"
+#include "com.h"
+#include "str-utils.h"
 #include "dkapture.h"
 
 #define MAX_ENTRIES 1000

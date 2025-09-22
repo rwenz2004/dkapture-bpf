@@ -5,11 +5,11 @@
 #include <bpf/bpf_core_read.h>
 
 #include "jhash.h"
-#include "Kstr-utils.h"
-#include "Kmem.h"
-#include "Kcom.h"
+#include "str-utils.h"
+#include "mem.h"
+#include "com.h"
 #include "fcntl-defs.h"
-#include "Kerrno.h"
+#include "errno.h"
 
 #define XATTR_NAME_MAX 256
 #define XATTR_VALUE_MAX 1024

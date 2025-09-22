@@ -2,7 +2,7 @@
 #include <bpf/bpf_helpers.h>
 #include <bpf/bpf_tracing.h>
 
-#include "Kcom.h"
+#include "com.h"
 
 // max support
 #define MAX_VEC_SIZE 32 // vector max buffer count in iovec

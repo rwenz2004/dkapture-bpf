@@ -3,9 +3,9 @@
 #include <bpf/bpf_tracing.h>
 
 #include "jhash.h"
-#include "Kstr-utils.h"
-#include "Kmem.h"
-#include "Kcom.h"
+#include "str-utils.h"
+#include "mem.h"
+#include "com.h"
 #include "fcntl-defs.h"
 
 char _license[] SEC("license") = "GPL";

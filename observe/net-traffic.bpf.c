@@ -4,11 +4,11 @@
 #include <bpf/bpf_endian.h>
 
 #include "jhash.h"
-#include "Kstr-utils.h"
-#include "Kmem.h"
-#include "Ktask.h"
+#include "str-utils.h"
+#include "mem.h"
+#include "task.h"
 #include "net.h"
-#include "Kcom.h"
+#include "com.h"
 
 #define PF_INET 2
 #define TRAFFIC_IN -1

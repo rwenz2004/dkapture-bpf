@@ -2,8 +2,8 @@
 #include <bpf/bpf_helpers.h>
 #include <bpf/bpf_tracing.h>
 #include "jhash.h"
-#include "Kstr-utils.h"
-#include "Kmem.h"
+#include "str-utils.h"
+#include "mem.h"
 
 #ifdef CONFIG_THREAD_INFO_IN_TASK
 #define CURRENT_CPU(t) (t->thread_info.cpu)

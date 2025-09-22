@@ -3,7 +3,7 @@
 #include <bpf/bpf_core_read.h>
 #include <bpf/bpf_tracing.h>
 
-#include "Kcom.h"
+#include "com.h"
 #include "ext4snoop.h"
 
 #define MAX_ENTRIES 1000

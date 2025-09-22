@@ -4,8 +4,8 @@
 #include "vmlinux.h"
 #include <bpf/bpf_helpers.h>
 #include <bpf/bpf_core_read.h>
-#include "Kmem.h"
-#include "Kstr-utils.h"
+#include "mem.h"
+#include "str-utils.h"
 
 _Pragma("GCC diagnostic push")
 _Pragma("GCC diagnostic ignored \"-Wunused-function\"")

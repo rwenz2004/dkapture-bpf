@@ -7,7 +7,7 @@
 #include <asm-generic/errno.h>
 
 #include "kmemleak.h"
-#include "Kcom.h"
+#include "com.h"
 
 const volatile size_t min_size = 0;
 const volatile size_t max_size = -1;

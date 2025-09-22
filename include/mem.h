@@ -3,7 +3,7 @@
 
 #include <bpf/bpf_helpers.h>
 #include <bpf/bpf_tracing.h>
-#include "Kcom.h"
+#include "com.h"
 
 static char __page[PAGE_SIZE] = {0};
 

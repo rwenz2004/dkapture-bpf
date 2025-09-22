@@ -12,9 +12,9 @@
 #include <bpf/bpf_endian.h>
 #include <asm-generic/errno-base.h>
 
-#include "Kcom.h"
-#include "Kstr-utils.h"
-#include "Kmem.h"
+#include "com.h"
+#include "str-utils.h"
+#include "mem.h"
 #include "endian.h"
 
 char _license[] SEC("license") = "GPL";

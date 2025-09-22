@@ -7,7 +7,9 @@ BPF_TARGET_ARCH := $(shell uname -m)
 ifeq ($(BPF_TARGET_ARCH), loongarch64)
 	BPF_TARGET_ARCH := loongarch
 endif
-CLANG_FLAGS = -g -MMD -Wall -O2 -I$(PROJ_ROOT)/include \
+CLANG_FLAGS = -g -MMD -Wall -O2 \
+			-I$(PROJ_ROOT)/include \
+			-I$(PROJ_ROOT)/export/ \
 			-I$(PROJ_ROOT)/build/include \
 			-I/usr/include/$(shell uname -m)-linux-gnu/ \
 			-I/lib/modules/$(shell uname -r)/build/include

@@ -4,12 +4,12 @@
 #include <bpf/bpf_core_read.h>
 
 #include "jhash.h"
-#include "Kstr-utils.h"
-#include "Kmem.h"
-#include "Kcom.h"
+#include "str-utils.h"
+#include "mem.h"
+#include "com.h"
 #include "fcntl-defs.h"
 #include "blk_types.h"
-#include "Kblk.h"
+#include "blk.h"
 #include "dkapture.h"
 
 char _license[] SEC("license") = "GPL";

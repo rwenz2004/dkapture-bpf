@@ -3,7 +3,7 @@
 #include <bpf/bpf_core_read.h>
 #include <bpf/bpf_tracing.h>
 
-#include "Kcom.h"
+#include "com.h"
 
 #define MAX_ENTRIES 1000
 #define MAX_EVENT_SIZE 10240

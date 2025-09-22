@@ -5,7 +5,7 @@
 #include <bpf/bpf_tracing.h>
 
 #include "dkapture.h"
-#include "Kcom.h"
+#include "com.h"
 
 const volatile bool targ_dist = false;
 const volatile bool targ_ns = false;

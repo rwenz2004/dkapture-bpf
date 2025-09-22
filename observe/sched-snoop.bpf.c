@@ -2,7 +2,7 @@
 #include <bpf/bpf_helpers.h>
 #include <bpf/bpf_tracing.h>
 #include <bpf/bpf_core_read.h>
-#include "Kstr-utils.h"
+#include "str-utils.h"
 
 #define TASK_COMM_LEN 16
 

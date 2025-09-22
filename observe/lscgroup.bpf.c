@@ -2,9 +2,9 @@
 #include <bpf/bpf_helpers.h>
 #include <bpf/bpf_tracing.h>
 
-#include "Kcom.h"
-#include "Kmem.h"
-#include "Kstr-utils.h"
+#include "com.h"
+#include "mem.h"
+#include "str-utils.h"
 
 #define ITER_PASS_STRING 0
 #define _Map

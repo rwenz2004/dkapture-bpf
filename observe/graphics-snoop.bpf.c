@@ -8,8 +8,8 @@
 #include <bpf/bpf_core_read.h>
 
 #include "dkapture.h"
-#include "Kcom.h"
-#include "Kstr-utils.h"
+#include "com.h"
+#include "str-utils.h"
 #include "graphics-snoop.h"
 
 char LICENSE[] SEC("license") = "GPL";

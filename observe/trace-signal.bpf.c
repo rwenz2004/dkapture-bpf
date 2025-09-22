@@ -1,10 +1,10 @@
 #include "vmlinux.h"
 #include <bpf/bpf_helpers.h>
 #include <bpf/bpf_tracing.h>
-#include "Kstr-utils.h"
+#include "str-utils.h"
 #include "jhash.h"
-#include "Kmem.h"
-#include "Kcom.h"
+#include "mem.h"
+#include "com.h"
 
 char _license[] SEC("license") = "GPL";
 

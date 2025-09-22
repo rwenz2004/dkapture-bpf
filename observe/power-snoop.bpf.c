@@ -6,7 +6,7 @@
 #include <bpf/bpf_core_read.h>
 
 #include "dkapture.h"
-#include "Kcom.h"
+#include "com.h"
 
 /* Power Event Types - Based on available power tracepoints */
 enum power_event_type

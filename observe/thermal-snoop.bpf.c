@@ -6,7 +6,7 @@
 #include <bpf/bpf_core_read.h>
 
 #include "dkapture.h"
-#include "Kcom.h"
+#include "com.h"
 
 /* Thermal Event Types - Based on available thermal tracepoints */
 enum thermal_event_type

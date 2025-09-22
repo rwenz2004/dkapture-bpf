@@ -20,9 +20,9 @@
 #include "vmlinux.h"
 #include <bpf/bpf_helpers.h>
 #include <bpf/bpf_tracing.h>
-#include "Ktask.h"
-#include "Kmem.h"
-#include "Kstr-utils.h"
+#include "task.h"
+#include "mem.h"
+#include "str-utils.h"
 #include <asm/errno.h>
 #include "jhash.h"
 

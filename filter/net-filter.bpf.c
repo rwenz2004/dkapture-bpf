@@ -43,7 +43,7 @@
 #include <bpf/bpf_tracing.h>
 #include <bpf/bpf_endian.h>
 
-#include "Kcom.h"
+#include "com.h"
 #include "net-filter.h"
 
 #define NF_DROP 0

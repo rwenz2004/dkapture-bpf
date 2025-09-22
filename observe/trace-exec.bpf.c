@@ -2,8 +2,8 @@
 #include <bpf/bpf_helpers.h>
 #include <bpf/bpf_tracing.h>
 #include "jhash.h"
-#include "Kstr-utils.h"
-#include "Kcom.h"
+#include "str-utils.h"
+#include "com.h"
 
 #define PATH_MAX 4096  // Maximum path length
 #define MAX_ENTRY 1000 // Maximum number of entries in the maps

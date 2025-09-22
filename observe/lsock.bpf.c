@@ -6,9 +6,9 @@
 #include <bpf/bpf_endian.h>
 #include <bpf/bpf_core_read.h>
 
-#include "Kcom.h"
+#include "com.h"
 #include "net.h"
-#include "Kstr-utils.h"
+#include "str-utils.h"
 
 #define ITER_PASS_STRING 0
 #define SWITCH_TCP (1 << 0)

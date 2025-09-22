@@ -5,8 +5,8 @@
 
 #include <linux/sched/prio.h>
 
-#include "Kcom.h"
-#include "Kstr-utils.h"
+#include "com.h"
+#include "str-utils.h"
 #include "dkapture.h"
 
 #define BUF_SZ (32 * 1024 * 1024) // 32 MB
