@@ -133,7 +133,6 @@ static int traffic_stat(struct socket *sock, int ret, int dir)
 	struct BpfData *log;
 	u32 dst_addr;
 	u32 src_addr;
-	char comm[16];
 	u32 traffic = ret;
 	if (ret < 0)
 	{
@@ -182,12 +181,6 @@ static int traffic_stat(struct socket *sock, int ret, int dir)
 		return 0;
 	}
 
-	ret = bpf_get_current_comm(comm, sizeof(comm));
-	if (ret)
-	{
-		bpf_printk("fail to get current comm: %d", ret);
-		return 0;
-	}
 	u32 lkey = __LINE__;
 	log = (typeof(log))malloc_page(lkey);
 	if (!log)
@@ -201,27 +194,20 @@ static int traffic_stat(struct socket *sock, int ret, int dir)
 	log->pid = bpf_get_current_pid_tgid();
 	log->dir = dir;
 
+	ret = bpf_get_current_comm(log->comm, 16);
+	if (ret < 0)
+	{
+		bpf_printk("fail to get current comm: %d", ret);
+		goto exit;
+	}
+
 	if (!rule_filter(log))
 	{
 		DEBUG(0, "filtered by rule");
 		goto exit;
 	}
 
-	u64 data[] = {(u64)comm};
-	ret = bpf_snprintf(log->comm, 16, "%s", data, sizeof(data));
-	if (ret < 0)
-	{
-		bpf_printk("error: bpf_snprintf: %d", ret);
-		goto exit;
-	}
-
-	if (ret > 16)
-	{
-		DEBUG(0, "inpossible code branch reached");
-		ret = 16;
-	}
-
-	ret = bpf_ringbuf_output(&logs, log, sizeof(*log) + ret, 0);
+	ret = bpf_ringbuf_output(&logs, log, sizeof(*log) + 16, 0);
 	if (ret != 0)
 	{
 		bpf_err("bpf_map_push_elem: %d\n", ret);
